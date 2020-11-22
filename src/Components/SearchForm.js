@@ -25,7 +25,7 @@ function SearchForm(props) {
       />
       <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
     </form>
-  );
+  )
 }
 
 export default SearchForm;

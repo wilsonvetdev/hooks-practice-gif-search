@@ -17,6 +17,7 @@ function App() {
     axios(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=${process.env.REACT_APP_GIF_API_KEY}`)
     .then(response => setData(response.data.data))
     .catch(error => console.log('Error fetching and parsing data', error))
+    .finally(() => setIsLoading(false))
   }, [query])
 
   return (
@@ -30,11 +31,16 @@ function App() {
       </div>
 
       <div className="main-content">
-        <GifList data={data} />
+        {
+          isLoading ? 
+          <p>Loading...</p>
+          :
+          <GifList data={data} />
+        }
       </div>
 
     </>
-  );
+  )
 }
 
 export default App
