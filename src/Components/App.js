@@ -8,10 +8,16 @@ import GifList from './GifList';
 function App() {
 
   const [data, setData] = useState([])
+  const [query, setQuery] = useState('cats')
+  const [isLoading, setIsLoading] = useState(true)
 
-  // useEffect(() => {
-  //   axios(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=YOUR_API_KEY`)
-  // })
+  const performSearch = value => setQuery(value)
+
+  useEffect(() => {
+    axios(`http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=${process.env.REACT_APP_GIF_API_KEY}`)
+    .then(response => setData(response.data.data))
+    .catch(error => console.log('Error fetching and parsing data', error))
+  }, [query])
 
   return (
     <>
@@ -19,7 +25,7 @@ function App() {
       <div className="main-header">
         <div className="inner">
           <h1 className="main-title">GifSearch</h1>
-          <SearchForm />
+          <SearchForm onSearch={performSearch} />
         </div>
       </div>
 
