@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 function SearchForm(props) {
   const [searchText, setSearchText] = useState('')
@@ -25,7 +25,7 @@ function SearchForm(props) {
       />
       <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
     </form>
-  )
+  );
 }
 
 export default SearchForm;
